@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public abstract class Character : MonoBehaviour {
+[RequireComponent(typeof(SpriteRenderer))]
+public abstract class Character : MonoBehaviour
+{
     [SerializeField]
     private string _charaID = "";
 
@@ -46,8 +48,7 @@ public abstract class Character : MonoBehaviour {
 
     private CharacterMaster LoadMaster(string charaID)
     {
-        var master = MasterLoader.LoadCharaMaster(charaID);
-        return master;
+        return MasterLoader.LoadCharaMaster(charaID);
     }
 
     private void SetSprite(Sprite sprite)
@@ -55,8 +56,7 @@ public abstract class Character : MonoBehaviour {
         Assert.IsNotNull(_renderer);
         Assert.IsNotNull(sprite);
         if (_renderer == null) return;
+
         _renderer.sprite = sprite;
     }
-
-
 }
